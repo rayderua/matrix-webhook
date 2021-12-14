@@ -15,10 +15,10 @@ jobs:
       - uses: docker/metadata-action@v3
         id: meta
         with:
-          images: nim65s/matrix-webhook
+          images: zerodotfive/matrix-webhook
       - uses: docker/login-action@v1
         with:
-          username: nim65s
+          username: zerodotfive
           password: ${{ secrets.DOCKERHUB_TOKEN }}
       - uses: docker/build-push-action@v2
         with:

@@ -1,4 +1,5 @@
 """Formatters for matrix webhook."""
+from . import utils
 
 
 def grafana(data, headers):
@@ -29,4 +30,39 @@ def github(data, headers):
     else:
         data["body"] = "notification from github"
     data["digest"] = headers["X-Hub-Signature-256"].replace("sha256=", "")
+    return data
+
+
+def slack(data, headers):
+    """Pretty-print a slack notification."""
+    text = ""
+    if "text" in data:
+        text = text + "<div>" + utils.format_url(data["text"]) + "</div>\n"
+    if "attachments" in data and len(data["attachments"]):
+        for attachment in data["attachments"]:
+            text = text + "<div>"
+            if "title_link" in attachment and "title" in attachment:
+                text = text + "<h4><a href=\"" + attachment["title_link"] + "\">" + attachment["title"] + "</a></h4>\n"
+            elif "title" in attachment:
+                text = text + "<h4>" + utils.format_url(attachment["title"]) + "</h4>\n"
+            if "text" in attachment:
+                text = text + utils.format_url(attachment["text"]) + "\n"
+
+            if "fields" in attachment and len(attachment["fields"]):
+                for field in attachment["fields"]:
+                    text = text + "<div>"
+                    if "title" in field:
+                        text = text + "<h5>" + utils.format_url(field["title"]) + "</h5>\n"
+                    if "value" in field:
+                        text = text + utils.format_url(str(field["value"])) + "\n"
+                    text = text + "</div>"
+            text = text + "</div>"
+    data["body"] = text
+    return data
+
+
+def raw(data, headers):
+    """Raw print."""
+    from json import dumps
+    data["body"] = "### Data:\n" + dumps(data) + "\n"
     return data

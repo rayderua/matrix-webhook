@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 - join room before sending message
-  in [#12](https://github.com/nim65s/matrix-webhook/pull/12)
+  in [#12](https://github.com/zerodotfive/matrix-webhook/pull/12)
   by [@bboehmke](https://github.com/bboehmke)
 
 ## [v3.2.1] - 2021-08-28
@@ -31,26 +31,26 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [v3.1.0] - 2021-07-18
 
 - Publish on PyPI & Docker Hub with Github Actions
-  in [#10](https://github.com/nim65s/matrix-webhook/pull/10)
-  by [@nim65s](https://github.com/nim65s)
+  in [#10](https://github.com/zerodotfive/matrix-webhook/pull/10)
+  by [@zerodotfive](https://github.com/zerodotfive)
 
 ## [v3.0.0] - 2021-07-18
 
 - Simplify code
-  in [#1](https://github.com/nim65s/matrix-webhook/pull/1)
+  in [#1](https://github.com/zerodotfive/matrix-webhook/pull/1)
   by [@homeworkprod](https://github.com/homeworkprod)
 - Update aiohttp use and docs
-  in [#5](https://github.com/nim65s/matrix-webhook/pull/5)
+  in [#5](https://github.com/zerodotfive/matrix-webhook/pull/5)
   by [@svenseeberg](https://github.com/svenseeberg)
 - Setup Tests, Coverage & CI ; update tooling
-  in [#7](https://github.com/nim65s/matrix-webhook/pull/7)
-  by [@nim65s](https://github.com/nim65s)
+  in [#7](https://github.com/zerodotfive/matrix-webhook/pull/7)
+  by [@zerodotfive](https://github.com/zerodotfive)
 - Setup argparse & logging
-  in [#8](https://github.com/nim65s/matrix-webhook/pull/8)
-  by [@nim65s](https://github.com/nim65s)
+  in [#8](https://github.com/zerodotfive/matrix-webhook/pull/8)
+  by [@zerodotfive](https://github.com/zerodotfive)
 - Setup packaging
-  in [#9](https://github.com/nim65s/matrix-webhook/pull/9)
-  by [@nim65s](https://github.com/nim65s)
+  in [#9](https://github.com/zerodotfive/matrix-webhook/pull/9)
+  by [@zerodotfive](https://github.com/zerodotfive)
 
 ## [v2.0.0] - 2020-03-14
 - Update to matrix-nio & aiohttp & markdown
@@ -58,11 +58,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [v1.0.0] - 2020-02-14
 - First release with matrix-client & http.server
 
-[Unreleased]: https://github.com/nim65s/matrix-webhook/compare/v3.2.1...master
-[v3.2.1]: https://github.com/nim65s/matrix-webhook/compare/v3.2.0...v3.2.1
-[v3.2.0]: https://github.com/nim65s/matrix-webhook/compare/v3.1.1...v3.2.0
-[v3.1.1]: https://github.com/nim65s/matrix-webhook/compare/v3.1.0...v3.1.1
-[v3.1.0]: https://github.com/nim65s/matrix-webhook/compare/v3.0.0...v3.1.0
-[v3.0.0]: https://github.com/nim65s/matrix-webhook/compare/v2.0.0...v3.0.0
-[v2.0.0]: https://github.com/nim65s/matrix-webhook/compare/v1.0.0...v2.0.0
-[v1.0.0]: https://github.com/nim65s/matrix-webhook/releases/tag/v1.0.0
+[Unreleased]: https://github.com/zerodotfive/matrix-webhook/compare/v3.2.1...master
+[v3.2.1]: https://github.com/zerodotfive/matrix-webhook/compare/v3.2.0...v3.2.1
+[v3.2.0]: https://github.com/zerodotfive/matrix-webhook/compare/v3.1.1...v3.2.0
+[v3.1.1]: https://github.com/zerodotfive/matrix-webhook/compare/v3.1.0...v3.1.1
+[v3.1.0]: https://github.com/zerodotfive/matrix-webhook/compare/v3.0.0...v3.1.0
+[v3.0.0]: https://github.com/zerodotfive/matrix-webhook/compare/v2.0.0...v3.0.0
+[v2.0.0]: https://github.com/zerodotfive/matrix-webhook/compare/v1.0.0...v2.0.0
+[v1.0.0]: https://github.com/zerodotfive/matrix-webhook/releases/tag/v1.0.0

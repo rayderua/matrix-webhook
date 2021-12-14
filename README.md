@@ -1,12 +1,12 @@
 # Matrix Webhook
 
-[![Tests](https://github.com/nim65s/matrix-webhook/actions/workflows/test.yml/badge.svg)](https://github.com/nim65s/matrix-webhook/actions/workflows/test.yml)
-[![Lints](https://github.com/nim65s/matrix-webhook/actions/workflows/lint.yml/badge.svg)](https://github.com/nim65s/matrix-webhook/actions/workflows/lint.yml)
-[![Docker-Hub](https://github.com/nim65s/matrix-webhook/actions/workflows/docker-hub.yml/badge.svg)](https://hub.docker.com/r/nim65s/matrix-webhook)
-[![Release](https://github.com/nim65s/matrix-webhook/actions/workflows/release.yml/badge.svg)](https://pypi.org/project/matrix-webhook/)
+[![Tests](https://github.com/zerodotfive/matrix-webhook/actions/workflows/test.yml/badge.svg)](https://github.com/zerodotfive/matrix-webhook/actions/workflows/test.yml)
+[![Lints](https://github.com/zerodotfive/matrix-webhook/actions/workflows/lint.yml/badge.svg)](https://github.com/zerodotfive/matrix-webhook/actions/workflows/lint.yml)
+[![Docker-Hub](https://github.com/zerodotfive/matrix-webhook/actions/workflows/docker-hub.yml/badge.svg)](https://hub.docker.com/r/zerodotfive/matrix-webhook)
+[![Release](https://github.com/zerodotfive/matrix-webhook/actions/workflows/release.yml/badge.svg)](https://pypi.org/project/matrix-webhook/)
 
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
-[![codecov](https://codecov.io/gh/nim65s/matrix-webhook/branch/master/graph/badge.svg?token=BLGISGCYKG)](https://codecov.io/gh/nim65s/matrix-webhook)
+[![codecov](https://codecov.io/gh/zerodotfive/matrix-webhook/branch/master/graph/badge.svg?token=BLGISGCYKG)](https://codecov.io/gh/zerodotfive/matrix-webhook)
 [![PyPI version](https://badge.fury.io/py/matrix-webhook.svg)](https://badge.fury.io/py/matrix-webhook)
 
 Post a message to a matrix room with a simple HTTP POST
@@ -16,7 +16,7 @@ Post a message to a matrix room with a simple HTTP POST
 ```
 python3 -m pip install matrix-webhook
 # OR
-docker pull nim65s/matrix-webhook
+docker pull zerodotfive/matrix-webhook
 ```
 
 ## Start
@@ -26,7 +26,7 @@ Create a matrix user for the bot, and launch this app it with the following argu
 ```
 python -m matrix_webhook -h
 # OR
-docker run --rm -it nim65s/matrix-webhook -h
+docker run --rm -it zerodotfive/matrix-webhook -h
 ```
 
 ```

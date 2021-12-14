@@ -24,7 +24,12 @@ async def matrix_webhook(request):
     try:
         data = json.loads(data_b.decode())
     except json.decoder.JSONDecodeError:
-        return utils.create_json_response(HTTPStatus.BAD_REQUEST, "Invalid JSON")
+        try:
+            data_b = await request.post()
+            data = json.loads(data_b.get("payload"))
+        except Exception:
+            LOGGER.error(f"Got {data_b=}")
+            return utils.create_json_response(HTTPStatus.BAD_REQUEST, "Invalid JSON")
 
     # legacy naming
     if "text" in data and "body" not in data:

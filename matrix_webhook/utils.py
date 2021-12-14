@@ -4,11 +4,13 @@ import logging
 from http import HTTPStatus
 
 from aiohttp import web
-from nio import AsyncClient
+from asyncio import create_task
+from nio import AsyncClient, InviteEvent, MatrixRoom
 from nio.exceptions import LocalProtocolError
 from nio.responses import RoomSendError, JoinError
 
 from . import conf
+from re import sub
 
 ERROR_MAP = {
     "M_FORBIDDEN": HTTPStatus.FORBIDDEN,
@@ -16,6 +18,11 @@ ERROR_MAP = {
 }
 LOGGER = logging.getLogger("matrix_webhook.utils")
 CLIENT = AsyncClient(conf.MATRIX_URL, conf.MATRIX_ID)
+
+
+def format_url(data):
+    data = sub(r"(<(https?://[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+)\|([\w\s]+)>)", r'<a href="\2">\3</a>', data)
+    return sub(r"(<)(https?://[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+)(>)", r'<a href="\2">\2</a>', data)
 
 
 def error_map(resp):
@@ -53,6 +60,16 @@ async def join_room(room_id):
             LOGGER.error(f"Send error: {e}")
         LOGGER.warning("Trying again")
     return create_json_response(HTTPStatus.GATEWAY_TIMEOUT, "Homeserver not responding")
+
+
+async def accept_invitation(room: MatrixRoom, event: InviteEvent):
+    LOGGER.debug(f"Got invite to room {room.room_id=}")
+    await CLIENT.join(room.room_id)
+
+
+def watch_for_invitation():
+    CLIENT.add_event_callback(accept_invitation, InviteEvent)
+    return create_task(CLIENT.sync_forever(0))
 
 
 async def send_room_message(room_id, content):
