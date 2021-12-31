@@ -28,18 +28,13 @@ async def matrix_webhook(request):
             data_b = await request.post()
             data = json.loads(data_b.get("payload"))
         except Exception:
-            if "formatter" in request.rel_url.query \
-                and request.rel_url.query["formatter"] == "raw" \
-                and "key" in request.rel_url.query:
-                    data = data_b.get("payload")
-            else:
-                LOGGER.error(f"Got {data_b=}")
-                return utils.create_json_response(HTTPStatus.BAD_REQUEST, "Invalid JSON")
+            if "formatter" not in request.rel_url.query \
+                or request.rel_url.query["formatter"] == "raw" \
+                or "key" in request.rel_url.query:
+                    LOGGER.error(f"Got {data_b=}")
+                    return utils.create_json_response(HTTPStatus.BAD_REQUEST, "Invalid JSON")
 
-            if "room_id" in request.rel_url.query:
-                data["room_id"] = request.rel_url.query["room_id"]
-            if "room_id" not in data:
-                data["room_id"] = request.path.lstrip("/")
+                data = data_b.get("payload")
 
     # legacy naming
     if "text" in data and "body" not in data:
