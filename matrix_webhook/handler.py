@@ -34,7 +34,8 @@ async def matrix_webhook(request):
                     LOGGER.error(f"Got {data_b=}")
                     return utils.create_json_response(HTTPStatus.BAD_REQUEST, "Invalid JSON")
 
-                data = data_b.get("payload")
+                data = dict()
+                data["text"] = data_b
 
     # legacy naming
     if "text" in data and "body" not in data:
