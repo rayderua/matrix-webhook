@@ -19,6 +19,7 @@ async def matrix_webhook(request):
     This one handles a POST, checks its content, and forwards it to the matrix room.
     """
     LOGGER.debug(f"Handling {request=}")
+    data = dict()
     data_b = await request.read()
 
     try:
@@ -29,12 +30,12 @@ async def matrix_webhook(request):
             data = json.loads(data_b.get("payload"))
         except Exception:
             if "formatter" not in request.rel_url.query \
-                or request.rel_url.query["formatter"] == "raw" \
-                or "key" in request.rel_url.query:
-                    LOGGER.error(f"Got {data_b=}")
-                    return utils.create_json_response(HTTPStatus.BAD_REQUEST, "Invalid JSON")
+                    or request.rel_url.query["formatter"] != "raw" \
+                    or "key" not in request.rel_url.query:
+                LOGGER.error(f"Got {data_b=}")
+                return utils.create_json_response(HTTPStatus.BAD_REQUEST, "Invalid JSON")
 
-                data = dict(text = data_b)
+            data["body"] = "Got {data_b=}"
 
     # legacy naming
     if "text" in data and "body" not in data:
