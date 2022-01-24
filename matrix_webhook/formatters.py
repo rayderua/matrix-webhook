@@ -64,5 +64,5 @@ def slack(data, headers):
 def raw(data, headers):
     """Raw print."""
     from json import dumps
-    data["body"] = "### Data:\n" + dumps(data) + "\n"
+    data["body"] = "### Data: \n```json\n" + dumps(data, indent=2) + "\n```\n"
     return data
