@@ -97,3 +97,26 @@ Add a webhook with an URL ending with `?formatter=grafana&key=API_KEY`
 ```
 docker-compose -f test.yml up --exit-code-from tests --force-recreate --build
 ```
+
+## Prometheus setup
+1. Run matrix bot
+```bash
+python3 -m matrix_webhook -H 127.0.0.1 -P 4785 -u https://<MATRIX_CHAT_URL> -i <MATRIX_USER_ID> -p <MATRIX_USER_PASSWORD> -k <WEBHOOK_TOKEN> -vvv
+```
+2. Configure Alertmanager  templates in alertmanager (see prometheus/alertmanager.yml)
+```yaml
+templates: ['/etc/prometheus/alertmanager_templates/*.tpl']
+```
+
+3. Add templete from prometheus/alertmanager_templates to /etc/prometheus/alertmanager_templates directory
+
+4. Configure receiver
+```yaml
+receivers:
+  - name: slack
+    slack_configs:
+      - send_resolved: true
+        api_url: 'http://127.0.0.1:4785/?key=<WEBHOOK_TOKEN>&room_id=<MATRIX_ROOM_ID>&formatter=slack'
+        text: '{{ template "slack.prometheus.text" . }}'
+        title: '{{ template "slack.prometheus.title" . }}'
+```

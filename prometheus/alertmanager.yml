@@ -1,0 +1,24 @@
+global:
+  smtp_require_tls: false
+  smtp_smarthost: '127.0.0.1:25'
+  smtp_from: 'prometheus@domain.com'
+  resolve_timeout: 30s
+
+route:
+  receiver: default
+  group_by: ['alertname']
+  repeat_interval: 5s
+  group_wait: 1s
+  group_interval: 1s
+  routes:
+  - receiver: default
+
+
+templates: ['/etc/prometheus/alertmanager_templates/*.tpl']
+receivers:
+  - name: default
+    slack_configs:
+      - send_resolved: true
+        api_url: 'http://127.0.0.1:4785/?key=<WEBHOOK_TOKEN>&room_id=<MATRIX_ROOM_ID>&formatter=slack'
+        text: '{{ template "slack.prometheus.text" . }}'
+        title: '{{ template "slack.prometheus.title" . }}'
